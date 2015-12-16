@@ -1,0 +1,254 @@
+% Template created by Karol Kozioł (www.karol-koziol.net) for ShareLaTeX
+
+\documentclass[a4paper,9pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage{amsmath,amssymb,textcomp}
+\everymath{\displaystyle}
+
+\usepackage{times}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
+\usepackage[defaultmono,scale=0.85]{droidmono}
+
+\usepackage{multicol}
+\setlength{\columnseprule}{0pt}
+\setlength{\columnsep}{20.0pt}
+\def\dudx{{du \over dx}}
+
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={210mm,297mm},
+left=3mm,right=3mm,top=3mm,bottom=8mm}
+
+\linespread{1.3}
+
+
+% custom title
+\makeatletter
+\renewcommand*{\maketitle}{%
+\noindent
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}
+\node[rectangle,rounded corners=6pt,inner sep=4pt,fill=blue!15!black,text width= 0.95\textwidth] {\color{white}\Med \@title};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+}%
+\makeatother
+
+
+\usepackage[explicit]{titlesec}
+
+% custom section
+\newcommand*\sectionlabel{}
+\titleformat{\section}
+  {\gdef\sectionlabel{}
+   \normalfont\sffamily\Large\bfseries\scshape}
+  {\gdef\sectionlabel{\thesection\ }}{0pt}
+  {
+\noindent
+\begin{tikzpicture}
+\node[rectangle,rounded corners=3pt,inner sep=4pt,fill=green!20!purple,text width= 0.95\columnwidth] {\color{white}\sectionlabel#1};
+\end{tikzpicture}
+  }
+\titlespacing*{\section}{0pt}{15pt}{10pt}
+
+% custom footer
+\usepackage{fancyhdr}
+\makeatletter
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot[C]{\footnotesize \textcopyright\ \@date\ \ \@author}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\makeatother
+
+
+\title{Probability and Statistics}
+
+
+
+\begin{document}
+\begin{multicols*}{2}
+\section{Calculus Identities}
+\begin{tabular}{ll}
+${dy \over dx} =  f'(g(x))*(g'(x))$ &
+${d(cu) \over dx} = c \dudx$ & ${d(u+v) \over dx} = \dudx + {dv \over dx}$ & ${d(uv) \over dx} = u {dv \over dx} + v \dudx$\\
+${d(u^n) \over dx} = nu^{n-1}\dudx$ & $ {d(u/v) \over dx} = {v\big(\dudx\big) - u\big({dv \over dx}\big) \over v^2}$ & ${d(e^{cu}) \over dx} = ce^{cu}\dudx$ \\
+${d(c^u) \over dx} = (\ln c) c^u\dudx$ & ${d(\ln u) \over dx} = {1 \over u} \dudx$ 
+& $\int u dv = uv-\int v du$
+& $\int c u \, dx = c \int u \, dx$\\
+$\int (u + v) \, dx = \int u \, dx + \int v \, dx$ & $ \int x^n \, dx = {1 \over n+1}x^{n+1}, \quad n \neq -1$ & $ \int {1 \over x} dx = \ln x$\\
+$\int e^x \, dx = e^x$ & $\int u {dv \over dx} dx = uv - \int v {du \over dx} dx$\\
+$log_2 8 = 3$ (aka $2^3=8$)\\
+\end{tabular}
+
+
+\section{Basic Probability}
+For events $A$ and $B$: \\
+$P(A \cap B) = P(A) * P(B) = P(A)*P(B|A)$ \\
+$P(A \cup B) = P(A) + P(B)$, (independent) \\
+$P(A \cup B) = P(A) + P(B) - P(A \cap B)$ (dependent) \\
+$P(A \cup B') = P(A) - P(A \cap B)$ \\
+$P(A \vert B) = {P(A \cap B)  \over P(B)}$ \\
+For random variables $X$ and $Y$ (Capital letters are RVs) \\
+Bayes' theorem: 
+$P(A | X) = {{P(X | A)P(A)} \over {P(X | A)P(A)+P(X | !a)P(!a)}} $ \\
+$P(A_i | B) = {P(B | A_i) P[A_i] \over \sum_{j=1}^n P[A_j] P[B | A_j]}.$ \\ 
+$_n P _r = {{n!} \over {(n-r)!}}$    $_n C _r = {{n!} \over {r! * (n-r)!}}$ \\
+\section{Random Variables \& Probability Distro}
+ \textbf{F(x) is the probability distribution and 
+f(x) is the probability density (pdf)} \\
+\textbf{Continuous distributions:}\\
+$ F(x) = P(X \leq x) = \int_{-\infty}^x f(u)du $ \\
+$P(a<X<b) = \int_{a}^b p(x) \, dx,$ \\
+iff: $ f(x) \geq 0$ and $\int_{-\infty}^{\infty} \!\!\! f(x)dx=1$ \\
+X and Y are independent if f(x,y) = f(x)f(y) \\
+
+cumulative distribution function: 
+\section{Transformation Formulae}
+suppose x and y are independent and continuous \\
+$f_{(x+y)}(w) =  \int_{-\infty}^{\infty} \!\!\! f(x)f(y)(w-x) dx$ where w=x+y \\
+$f_{(xy)}(w) =  \int_{-\infty}^{\infty} \!\!\! f(x)f(y)(w/x) dx$ where w=xy \\
+$f_{({y \over x})}(w) =  \int_{-\infty}^{\infty} \!\!\! f(x)f(y)(wx) dx$ where w=y/x \\
+
+\textbf{in the discrete case:} \\ 
+$f_{(x+y)}(w) =  \sum f_x(x)f_y(w-x) dx$ where w=x+y \\
+$f_{(xy)}(w) =  \sum f_x(x)f_y({w \over x})$ where w=xy \\
+$f_{({y \over x})}(w) =  \sum f_x(x)f_y(wx)$ where w=y/x \\
+Remark:
+Since X and Y are independent, the joint PDF satisifies $f_{x,y}f_x(x)f_y(y)$
+\section{Expectation:}
+$\mu = E(x)$ \\
+If $X$ is discrete:\\
+$E[g(X)] = \sum_x g(x) P[X=x].$\\
+If $X$ continuous then
+
+$E[g(X)] = \int_{-\infty}^{\infty} g(x) p(x) \, dx = \int_{-\infty}^{\infty} g(x) d P(x)$ \\
+\begin{tabular}{l2}
+$E[X] = \int_{-\infty}^{\infty} X f(x)dx$ 
+& $E[X + Y ] = E(X) + E(Y)$ 
+& $E[XY]=E(X)E(Y)$ (independent vars)
+& $E[c X] = c E[X]$ \\
+\end{tabular}
+\section {Examples}
+\textbf{Joint density:$f(x) = 
+  \begin{cases} 
+   2e^{- 2x} & x > 0 \\
+   0       & x \leq 0
+  \end{cases}$}
+  E(X)$= \int_{-\infty}^{\infty}xf(x)dx=\int_{0}^{\infty}x(2e^{-2x}dx=2\int_{0}^(\infty}x(2e^{-2x}dx=1/2$
+  $E(X^2)$$= \int_{-\infty}^{\infty}x^2f(x)dx=\int_{0}^{\infty}x^2(2e^{-2x})dx=2\int_{0}^{\infty}x^2(2e^{-2x})dx=1/2$
+  
+  \textbf{Variance, standard deviation of sum of pair of dice}
+  $E(X^2)=E(Y^2)=1^2({1 \over 6})+2^2({1 \over 6})+...6^2({1 \over 6})={91 \over 6} \quad Var(X)=Var(Y)=91/6-({7 \over 2})^2={35 \over 12} \quad Var(X+Y)=Var(X)+Var(Y) = 35/6 \quad \sigma_{x+y}=\sqrt{{Var(X+Y}}=\sqrt{{35 \over 6}}$ \\
+  \textbf{P(defective bolt)=0.1 find mean, standard deviation for 400 bolts}
+  Mean $\mu=np=400(0.1)=40...expect 40 defective$ \quad Var $\sigma^2=npq=(400)(0.1)(0.9)=36 Standard dev. \sigma=\sqrt{36}=6
+\section{Variance, standard deviation}
+Variance is $\sigma^2$ standard deviation is $\sigma_x$ or $\sigma$\\
+$Var[X] = E[X^2] - E[X]^2 $ 
+$\sigma_x = \sqrt{Var[X]} = \sqrt{E[x-\mu]^2} $ \\
+Continuous: 
+$\sigma_x^2 = [E(X-\mu)^2] = \int_{-\infty}^{\infty} \!\!\! (X-\mu)^2f(x)dx$\\
+
+for P(all events) same:
+$\sigma^2 = {{(x_1-\mu)^2 + (x_2-\mu)^2 + ... (x_n-\mu)^2} \over {n}}$\\
+$\sigma^2 = E[(X-\mu)^2] = E(X)^2 - \mu^2 = E(X^2) - [E(X)]^2$ \\
+$E[(x-a)^2]$ is at a minimum when $a=\mu=E(x)$\\
+
+If X and Y are independent:\\
+$Var(X+Y) = Var(x) + Var(Y)$ or $\sigma^2 = \sigma_x^2 + \sigma_y^2$\\
+$Var(X-Y) = Var(X) - Var(Y)$ or $\sigma^2_{x-y}  = \sigma_x^2 - \sigma_y^2$\\ 
+$\sigma_{XY} = Cov(X,Y)=E[X-\mu_x)(Y-\mu_Y)]$\\
+When Y=X $cov(X,X)=(X^2)-(X)^2=\sigma^2_x
+$Var[a+bY] = b^2Var[y]$\\
+if c is a constant: $Var(cX)=c^2Var(x)$\\
+$X^*={{X-\mu} \over \sigma}$ \qquad $E(X*)=0$ \qquad $Var(X*)=1$
+
+
+\section{Hypergeometric}
+A hypergeometric random variable $X$ is # of defective items in $n_2$ items drawn w/o replacement from $n_3$ items with $n_1$ defective items.
+$$
+f(x) = \frac{{n_1 \choose x} {n_3 - n_1\choose n_2 - x}}{{n_3 \choose n_2}}.
+$$
+for $x = \max\{0,\, n_1 + n_2 - n_3\}, \ldots, \min\{n_1,\,n_2\}$.
+
+\noindent
+The cumulative distribution function on the support of X is
+$
+F(x) = P(X \leq x) = \sum_{k = 0} ^ x \frac{{n_1 \choose k} {n_3 - n_1 \choose n_2 - k}}{{n_3 \choose n_2}}\quad x=\max\{0, n_1 + n_2 - n_3\}, \ldots, \min\{n_1, \,n_2\}. 
+E[X] = \frac{n_2 n_1}{n_3}
+V[X]=\frac{n_2 n_3(1 - n_1)(n_3 - n_2)}{n_3 ^ 2(n_3 - 1)}
+$
+
+\begin{center}
+ \begin{tabular}{| c | c | c | c | c | c|} 
+ \hline
+ X & X Counts & P_x & X Values & E(X) ($\mu$) & Var(X) ($\sigma^2$) \\ [0.5ex] 
+ \hline\hline
+ Binomial & P(X=x) # success in fixed n trials & $\binom{n}{x} p^x q^{n-x} =(1-p)^{k-1}p$ & 0,1..,n & $np & np(1-p)$ \\ 
+ \hline
+ Geometric & # trials through 1st success & $p(1-p)^k | p(1-p)^{k-1}$ & 0,1,.. | 1,2,..  & ${{1-p} \over p}$ | $1 \over p$ & ${{1-p) \over p^2}$\\
+ \hline
+ Uniform & outcomes equally likely & $f(x) = 
+  \begin{cases} 
+    1 \over {b-a} & a \leq x < b \\
+   0       & \text{else } 
+  \end{cases}$ & 1,2..,L  
+& ${1 \over 2}(a+b)$ & ${1 \over 12}(b-a)^2$\\
+\hline
+ Uniform ctd. & uniform P(x<=X) & $F(x) = 
+  \begin{cases} 
+   0 & x < a \\
+   {x-a} \over {b-a} & \text{if } a \leq x < b \\
+   1       & \text{if } x \geq b
+  \end{cases}$ \\
+
+ \hline
+ Poisson & \# events occur fixed time & $P(X=x)={{\lambda^xe^{-\lambda}} \over {x!}}$ where $\lambda=E(X)$ & 0,1,2 & \lambda & \lambda \\
+ \hline
+ Exponential & time between Poisson events & $f(x) = 
+  \begin{cases} 
+   \alpha e^{- \alpha x} & \text{if } x > 0 \\
+   0       & \text{if } x \leq 0
+  \end{cases}$ & 0,1,2 & $1 \over \alpha$ & $1 \over \alpha^2$ \\
+ \hline
+  Neg. Binomial & up to and including rth success &  $P(X=x)=\binom{x-1}{r-1} p^r q^{x-r}$ & 0,1,2...r & $ r \over p  $ & ${{rq} \over {p^2}}$\\ [1ex]
+  \hline
+  Hypergeometric & \# mrkd items taken w/o replace &  ${{\binom{M}{x} \binom{N-M}{n-x}} \over \binom{N}{n}$ &  & $ n* {M\overN}  $ & ${{nM(N-M)(N-n)} \over {N^2(N-1)}}$\\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\section {Examples}
+\textbf{Coin has P(H)=0.4. P(1st H) on 3rd trial?}
+$P(X=3) = p^2(1-p)=(0.6)^2(0.4)=0.144$\\
+\textbf{Coin has P(H)=0.4. Tossed until 3rd head. P(6 times)?} $P(X=6) = \binom{6-1}{3-1}p^3(1-p)^{6-3} = \binom{5}{2}(0.4)^3(0.6)^3=0.13824$\\
+\textbf{Coin has P(H)=0.3. Tossed until 4th head. P(>10 but < 12)?} \\
+\textbf{Radioactive particle w/Poisson emit. Prob (no emissions in hour)=0.4. Rate $\lambda$?} $f_x(0)=0.4$, so $0.4=e^-\lambda {\lambda^0 \over 0!} = e^-\lambda$ so $-\lambda=0.4$. $\lambda=-ln.4=ln 2.5$ \textbf{P(3) in 1 hour?} $f_x(3)=e^(-ln2.5) {(ln2.5)^3 \over 3!} = {(ln2.5)^3 \over 15} \\
+\textbf{8 marbles, 1 red, 7 white. Probability out of 8 draws 3 red?}
+Binomial: $ P(X=3)=\binom{8}{3}(1/8)^3(7/8)^5=0.0561 $
+Poisson:  $\lambda=1/8(8)=1 \quad P(X=3)={{\lambda^xe^-\lambda} \over {\x!}}={{1^3e^-1} \over 3!} = 0.061
+Biased coin P(H)=0.3 tossed until heads. P(4< \#coin tosses<6)?
+$f_x(k)=p(1-p)^{k-1}=0.3(0.7)^{k-1}...f_x(4)+f_x(5)+f_x(6)=0.3(0.7)^3+(0.3)(0.7)^4+(0.3)(0.7)^5$
+Biased coin P(H)=0.3 tossed until 4th head. P(10 < \# coin tosses < 12)?
+r=4 & p=0.3 ....$f_x(k)=\binom{k-1}{3}p^4(1-p)^{k-4}=\binom{k-1}{3}(0.3_^4(0.7)^{k-4}$...$P(10\leqX\leq12)=f_x(10)+f_x(11)+f_x(12)=\binom{9}{3}(0.3)^4(0.7)^6+\binom{9}{3}(0.3)^4(0.7)^7+\binom{9}{3}(0.3)^4(0.7)^8$
+
+\section {Normal Distribution}
+    $\mu$ is mean $\sigma$ is standard deviation \\
+    density: $f(x)={1 \over {\sigma \sqrt{({2\pi})}}}e^{{-(x-u)^2}/{2 \sigma^2}}$ \quad
+    distr: $P(X\leqx)={1 \over {\sigma \sqrt{(2\pi)}}}$ \\
+    for $Z={{X-\mu} \over \sigma}$ var=1 E(X)=0
+    
+
+\end{multicols*}
+\end{document}                                                                         
+
+
+ 
